@@ -1,10 +1,11 @@
 # VK_EXTX_portability_subset
 
-Please note:  This extension is currently defined as "EXTX", meaning "multivendor experimental".
+>**_Please Note_**:  This extension is currently defined as "EXTX", meaning "multivendor experimental". 
 That means the definition of this extension is in active development, and may break compatibility
-between point releases.
-You are free to explore the extension and provide feedback,
-but it is not recommended to use this for shipping applications.
+between point releases (defined as any increment of `VK_EXTX_PORTABILITY_SUBSET_SPEC_VERSION`).
+You are free to explore the extension and provide feedback, but it is not recommended to use this
+extension for shipping applications, particularly applications that require the driver implementing this
+extension to be linked dynamically and potentially "dropped-in" to the application execution environment.
 
 This specification provides Vulkan implementations with the ability to mark otherwise-required
 capabilities as unsupported, or to establish additional properties and limits that the app should
@@ -16,6 +17,12 @@ platforms that are missing just a few pieces of required Vulkan capability.
 The goal of this specification is to document, and make queryable, capabilities which are required
 to be supported by a fully-conformant Vulkan 1.0 implementation, but may be optional for a "Portable"
 Vulkan 1.0 implementation.
+
+The intent is that this extension will be advertised only on "Portable" Vulkan
+1.0 implementations where it is actually needed.  Fully-conformant Vulkan
+implementations provide all the required capability, and so will not provide
+this extension.  Therefore, the existance of this extension can be used
+to determine that an implementation is likely not fully conformant with the Vulkan spec.
 
 This extension defines several new structures that can be chained to the existing structures used by
 certain standard Vulkan calls, in order to query for non-conformant portable behaviour.
@@ -126,7 +133,7 @@ include a `VkPhysicalDevicePortabilitySubsetPropertiesEXTX` structure in the `pN
 
 
 ### Valid Usage
-- `sType` must be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_EXTX `
+- `sType` must be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_EXTX`
 
 - Each `pNext` member of any structure (including this one) in the `pNext` chain **must** be either
   `NULL` or a pointer to another structure permitted in the `vkGetPhysicalDeviceProperties2KHR` call.
@@ -142,6 +149,7 @@ include a `VkPhysicalDevicePortabilitySubsetPropertiesEXTX` structure in the `pN
 
 To query whether a `VkImageView` can be created for a specific set of properties,
 include a `VkPhysicalDeviceImageViewSupportEXTX` structure in the `pNext` chain of
+the `const VkPhysicalDeviceImageFormatInfo2KHR* pImageFormatInfo` argument of
 a call to `vkGetPhysicalDeviceImageFormatProperties2KHR`. The implementation **must**
 return `VK_ERROR_FORMAT_NOT_SUPPORTED` if the creation of a `VkImageView` with those
 properties is not supported.
@@ -168,7 +176,7 @@ properties is not supported.
 
 ### Valid Usage
 
-- `sType` must be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_SUPPORT_EXTX `
+- `sType` must be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_SUPPORT_EXTX`
 
 - Each `pNext` member of any structure (including this one) in the `pNext` chain **must** be either `NULL`
   or a pointer to another structure permitted in the `vkGetPhysicalDeviceImageFormatProperties2KHR` call.

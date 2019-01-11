@@ -44,7 +44,7 @@ static VkResult mock_vkGetPhysicalDeviceImageFormatProperties2KHR(VkPhysicalDevi
                                                                   const VkPhysicalDeviceImageFormatInfo2* pImageFormatInfo,
                                                                   VkImageFormatProperties2* pImageFormatProperties) {
     VkResult result = VK_SUCCESS;
-    for (auto data = reinterpret_cast<VkBaseOutStructure*>(pImageFormatProperties); data; data = data->pNext) {
+    for (auto data = reinterpret_cast<const VkBaseOutStructure*>(pImageFormatInfo); data; data = data->pNext) {
         switch ((int)data->sType) {
             case VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_SUPPORT_EXTX: {
                 // The implementation sets its results...

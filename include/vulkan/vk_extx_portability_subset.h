@@ -21,9 +21,18 @@ extern "C" {
 ** limitations under the License.
 */
 
+/*
+ Please Note:  This extension is currently defined as "EXTX", meaning "multivendor experimental".
+ That means the definition of this extension is in active development, and may break compatibility
+ between point releases (defined as any increment of VK_EXTX_PORTABILITY_SUBSET_SPEC_VERSION).
+ You are free to explore the extension and provide feedback, but it is not recommended to use this
+ extension for shipping applications, particularly applications that require the driver implementing this
+ extension to be linked dynamically and potentially "dropped-in" to the application execution environment.
+ */
+
 #include "vulkan/vulkan.h"
 
-#define VK_EXTX_PORTABILITY_SUBSET_SPEC_VERSION       0
+#define VK_EXTX_PORTABILITY_SUBSET_SPEC_VERSION       1
 #define VK_EXTX_PORTABILITY_SUBSET_EXTENSION_NAME     "VK_EXTX_portability_subset"
 
 #define VK_EXTX_PORTABILITY_SUBSET_EXTENSION_ID 164
