@@ -2,7 +2,8 @@
 
 This repository provides a focus and tools to help application developers 
 understand and provide input to the *Vulkan Portability initiative*, 
-including the `VK_KHR_portability_subset` Vulkan extension.
+including the [VK_KHR_portability_subset](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/VK_KHR_portability_subset.html)
+Vulkan extension.
 
 
 ## VK_KHR_portability_subset Extension
